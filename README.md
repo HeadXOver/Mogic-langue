@@ -1,5 +1,5 @@
 # Mogic
-## A computer language in logic Âß¼­±à³ÌÓïÑÔ
+## A computer language in logic é€»è¾‘ç¼–ç¨‹è¯­è¨€
 ### example1:  
 #### *in test.mgc*:  
 ```mgc
@@ -21,7 +21,7 @@
 *True*  
 *False*  
 ##### Split statements with__semicolons__
-##### ÓÃ**·ÖºÅ**·Ö¸îÓï¾ä
+##### ç”¨**åˆ†å·**åˆ†å‰²è¯­å¥
 ______
 ______
 
@@ -44,3 +44,5 @@ know(forall [i] into [food] ([can be eaten]([i])));
 *Truecan be eaten(apple) = true*  
 
 ### more example read in the file "examples.mgc" 
+
+## vs code extension in the file "MogicExtension"  
