@@ -1,0 +1,559 @@
+//-----example 1 in Chinese--------
+
+propo D = '我打游戏';
+propo A = '我打得菜';
+propo B = '我打得好';
+propo C = '我打得拉';
+
+know{
+	D->(A or B);
+	C==(!B);
+	!A;
+	D;
+}
+
+>>D;
+>>A;
+>>B;
+>>C;
+
+
+//-----example 1 in English--------
+
+propo D = 'play the game';
+propo A = 'be skilled';
+propo B = 'play well';
+propo C = 'play poorly';
+
+know{
+	D->(A or B);
+	C==(!B);
+	!A;
+	D;
+}
+
+>>D;
+>>A;
+>>B;
+>>C;
+
+
+//-----example 2 in Chinese--------
+
+propo A = 'A去';
+propo B = 'B去';
+propo C = 'C去';
+propo D = 'D去';
+
+know(A -> not(C == D));
+know(not(B and C));
+know(C -> not(D));
+
+infer(A,B,C,D) tnum 2;
+
+>>A;
+>>B;
+>>C;
+>>D;
+
+
+//-----example 2 in English--------
+
+propo A = 'A go';
+propo B = 'B go';
+propo C = 'C go';
+propo D = 'D go';
+
+know(A -> not(C == D));
+know(not(B and C));
+know(C -> not(D));
+
+infer(A,B,C,D) tnum 2;
+
+>>A;
+>>B;
+>>C;
+>>D;
+
+
+//-----example 3 in Chinese--------
+
+propo A = 'A去';
+propo B = 'B去';
+propo C = 'C去';
+propo D = 'D去';
+
+know{
+	A -> not(C == D);
+	not(B and C);
+	C -> not(D);
+}
+
+infer(A,B,C,D) tnum 2;
+
+>>A;
+>>B;
+>>C;
+>>D;
+
+
+//-----example 3 in English--------
+
+propo A = 'A go';
+propo B = 'B go';
+propo C = 'C go';
+propo D = 'D go';
+
+know{
+	A -> not(C == D);
+	not(B and C);
+	C -> not(D);
+}
+
+infer(A,B,C,D) tnum 2;
+
+>>A;
+>>B;
+>>C;
+>>D;
+
+
+//-----example 4 in Chinese--------
+
+propo P = '我去吃饭';
+propo Q = '我去二楼';
+propo R = '我去三楼';
+propo S = '我上楼梯';
+
+know(P -> (Q or R));
+know(Q -> S);
+know(R -> S);
+know(P);
+
+>>P;
+>>Q;
+>>R;
+>>S;
+
+
+//-----example 4 in English--------
+
+propo P = 'go to canteen';
+propo Q = 'go to the second floor';
+propo R = 'go to the third floor';
+propo S = 'go up the stairs';
+
+know(P -> (Q or R));
+know(Q -> S);
+know(R -> S);
+know(P);
+
+>>P;
+>>Q;
+>>R;
+>>S;
+
+
+//-----example 5 in Chinese--------
+
+predi [吃] tnum 2;
+
+dom [动物];
+obj [狗];
+obj [猴];
+
+dom [食物];
+obj [香蕉];
+obj [苹果];
+
+know {
+	[香蕉] into [食物];
+	[苹果] into [食物];
+
+	[猴] into [动物];
+	[狗] into [动物];
+}
+
+know (forall [i] into [食物] ( [吃]([狗], [i]) ));
+know (not [吃]([猴], [香蕉]));
+
+>>[吃]([狗],[苹果]);
+>>forall [i] into [动物] ([吃]([i], [香蕉]));
+
+
+//-----example 5 in English--------
+
+predi [eat] tnum 2;
+
+dom [animal];
+obj [dog];
+obj [monkey];
+
+dom [food];
+obj [banana];
+obj [apple];
+
+know {
+	[banana] into [food];
+	[apple] into [food];
+
+	[monkey] into [animal];
+	[dog] into [animal];
+}
+
+know (forall [i] into [food] ( [eat]([dog], [i]) ));
+know (not [eat]([monkey], [banana]));
+
+>>[eat]([dog],[apple]);
+>>forall [i] into [animal] ([eat]([i], [banana]));
+
+
+
+//-----example 6 in Chinese--------
+
+propo A;
+propo B;
+propo C;
+propo D;
+
+obj [A];
+obj [B];
+obj [C];
+obj [D];
+
+predi [去];
+
+know{
+	A == [去]([A]);
+	B == [去]([B]);
+	C == [去]([C]);
+	D == [去]([D]);
+}
+
+know(A -> not(C == D));
+know(not(B and C));
+know(C -> not(D));
+
+infer(A,B,C,D) tnum 2;
+
+>> [去]([A]);
+>> [去]([B]);
+>> [去]([C]);
+>> [去]([D]);
+
+
+//-----example 6 in English--------
+
+propo A;
+propo B;
+propo C;
+propo D;
+
+obj [A];
+obj [B];
+obj [C];
+obj [D];
+
+predi [go];
+
+know{
+	A == [go]([A]);
+	B == [go]([B]);
+	C == [go]([C]);
+	D == [go]([D]);
+}
+
+know(A -> not(C == D));
+know(not(B and C));
+know(C -> not(D));
+
+infer(A,B,C,D) tnum 2;
+
+>> [go]([A]);
+>> [go]([B]);
+>> [go]([C]);
+>> [go]([D]);
+
+
+//-----example 7 ----------------
+
+func f(n){
+	int result = 1;
+	if(n!=1){
+		result = f(n-1) * n;
+	}
+	value result;
+}
+
+>> f(6);
+
+
+//-----example 8 in Chinese--------
+
+dom [食物];
+obj [苹果];
+obj [香蕉];
+obj [米饭];
+obj [屎];
+obj [土];
+
+>>know{
+	[苹果] into [食物];
+	[香蕉] into [食物];
+	[米饭] into [食物];
+}
+
+
+>>[苹果] into [食物];
+>>[香蕉] into [食物];
+>>[米饭] into [食物];
+>>[屎] into [食物];
+>>[土] into [食物];
+
+
+//-----example 8 in English--------
+
+dom [food];
+obj [apple];
+obj [banana];
+obj [rice];
+obj [shit];
+obj [soil];
+
+>>know{
+	[apple] into [food];
+	[banana] into [food];
+	[rice] into [food];
+}
+
+
+>>[apple] into [food];
+>>[banana] into [food];
+>>[rice] into [food];
+>>[shit] into [food];
+>>[soil] into [food];
+
+
+//-----example 9 in Chinese--------
+
+predi [吃];
+propo P name '不吃';
+obj [苹果];
+
+know([吃]([苹果]) or P);
+know(not P);
+
+>>[吃]([苹果]);
+
+
+//-----example 9 in English--------
+
+predi [eat];
+propo P name 'do not eat';
+obj [apple];
+
+know([eat]([apple]) or P);
+know(not P);
+
+>>[eat]([apple]);
+
+
+//-----example 10 in Chinese--------
+
+obj [鹰];
+obj [企鹅];
+dom [鸟类];
+
+know([鹰] into [鸟类]);
+know([企鹅] into [鸟类]);
+
+predi [有翅膀];
+predi [会飞];
+
+know(forall [i] into [鸟类] ([有翅膀]([i]) == [会飞]([i])));
+know{
+	[有翅膀]([鹰]);
+	not [有翅膀]([企鹅]);
+}
+
+>>[会飞]([鹰]);
+>>[会飞]([企鹅]);
+
+
+//-----example 10 in English--------
+
+obj [eagle];
+obj [penguin];
+dom [bird];
+
+know([eagle] into [bird]);
+know([penguin] into [bird]);
+
+predi [Having wings];
+predi [can fly];
+
+know(forall [i] into [bird] ([Having wings]([i]) == [can fly]([i])));
+know{
+	[Having wings]([eagle]);
+	not [Having wings]([penguin]);
+}
+
+>>[can fly]([eagle]);
+>>[can fly]([penguin]);
+
+
+//-----example 11 in Chinese--------
+
+predi [是食物];
+predi [能吃];
+
+dom [东西];
+obj [苹果];
+obj [香蕉];
+obj [米饭];
+obj [铁];
+obj [土];
+
+>>know{
+	[苹果] into [东西];
+	[香蕉] into [东西];
+	[米饭] into [东西];
+	[铁] into [东西];
+	[土] into [东西];
+	[是食物]([苹果]);
+	[是食物]([香蕉]);
+	[是食物]([米饭]);
+	not [是食物]([铁]);
+	not [是食物]([土]);
+
+	forall [i] into [东西] ([是食物]([i]) == [能吃]([i]));
+	//forall [i] into [东西] (not([是食物]([i])) -> not([能吃]([i])));
+}
+
+
+>>[是食物]([苹果]);
+>>[是食物]([香蕉]);
+>>[是食物]([米饭]);
+>>[是食物]([铁]);
+>>[是食物]([土]);
+
+>>[能吃]([苹果]);
+>>[能吃]([香蕉]);
+>>[能吃]([米饭]);
+>>[能吃]([铁]);
+>>[能吃]([土]);
+
+
+//-----example 11 in English--------
+
+predi [is food];
+predi [can eat];
+
+dom [elements];
+obj [apple];
+obj [banana];
+obj [rice];
+obj [iron];
+obj [soil];
+
+>>know{
+	[apple] into [elements];
+	[banana] into [elements];
+	[rice] into [elements];
+	[iron] into [elements];
+	[soil] into [elements];
+	[is food]([apple]);
+	[is food]([banana]);
+	[is food]([rice]);
+	not [is food]([iron]);
+	not [is food]([soil]);
+
+	forall [i] into [elements] ([is food]([i]) == [can eat]([i]));
+	//forall [i] into [elements] (not([is food]([i])) -> not([can eat]([i])));
+}
+
+
+>>[is food]([apple]);
+>>[is food]([banana]);
+>>[is food]([rice]);
+>>[is food]([iron]);
+>>[is food]([soil]);
+
+>>[can eat]([apple]);
+>>[can eat]([banana]);
+>>[can eat]([rice]);
+>>[can eat]([iron]);
+>>[can eat]([soil]);
+
+
+//-----example 12 in Chinese--------
+
+predi [能吃];
+
+dom [东西];
+obj [米饭];
+obj [铁];
+obj [土];
+
+>>know{
+	[米饭] into [东西];
+	[铁] into [东西];
+	[土] into [东西];
+
+	exist [i] into [东西] [能吃]([i]);
+
+	not([能吃]([铁]));
+	not([能吃]([土]));
+}
+
+>>[能吃]([米饭]);
+>>[能吃]([铁]);
+>>[能吃]([土]);
+
+
+//-----example 12 in English--------
+
+predi [can eat];
+
+dom [elements];
+obj [rice];
+obj [iron];
+obj [soil];
+
+>>know{
+	[rice] into [elements];
+	[iron] into [elements];
+	[soil] into [elements];
+
+	exist [i] into [elements] [can eat]([i]);
+
+	not([can eat]([iron]));
+	not([can eat]([soil]));
+}
+
+>>[can eat]([rice]);
+>>[can eat]([iron]);
+>>[can eat]([soil]);
+
+//-----example 13 in Chinese--------
+
+predi [能吃];
+
+dom [东西];
+obj [米饭];
+obj [铁];
+obj [土];
+
+>>know{
+	[米饭] into [东西];
+	[铁] into [东西];
+	[土] into [东西];
+
+	onlyone [i] into [东西] [能吃]([i]);
+
+	[能吃]([米饭]);
+}
+
+>>[能吃]([米饭]);
+>>[能吃]([铁]);
+>>[能吃]([土]);
