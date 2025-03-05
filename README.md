@@ -41,7 +41,7 @@ know(forall [i] into [food] ([can be eaten]([i])));
 ```
 
 #### result:  
-*Truecan be eaten(apple) = true*  
+*can be eaten(apple) = true*  
 
 ### more example read in the file "examples.mgc" 
 
