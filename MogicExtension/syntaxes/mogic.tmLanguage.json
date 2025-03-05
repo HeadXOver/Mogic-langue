@@ -1,0 +1,57 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Mogic",
+	"patterns": [
+		{
+			"match": "\\b[0-9]+\\b",
+			"name": "constant.numeric.mylang"
+		},
+		{
+			"match":"\\b(True|False)\\b",
+			"name":"constant.language.mogic"
+		},
+		{
+			"match":"\\b(obj|propo|int|bool)\\b",
+			"name":"storage.type.mogic"
+		},
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"name": "comment.block.mogic",
+			"begin": "/\\*",
+			"end": "\\*/"
+		},
+		{
+			"begin": "(^[ \\t]+)?((//)(?:\\s*((@)internal)(?=\\s|$))?)",
+			"end": "(?=$)",
+			"name":"comment.line.double-slash.mogic"
+		}
+
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.control.mogic",
+					"match": "\\b(if|while|for|return|know|be|etre|else|name)\\b"
+				}
+			]
+		},
+		"strings": {
+			"name": "string.quoted.single.mogic",
+			"begin": "'",
+			"end": "'",
+			"patterns": [
+				{
+					"name": "constant.character.escape.mogic",
+					"match": "\\\\."
+				}
+			]
+		}
+	},
+	"scopeName": "source.mgc"
+}
