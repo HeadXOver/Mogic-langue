@@ -1,9 +1,9 @@
 //-----example 1 in Chinese--------
 
-propo D = '我打游戏';
-propo A = '我打得菜';
-propo B = '我打得好';
-propo C = '我打得拉';
+D: "我打游戏";
+A: "我打得菜";
+B: "我打得好";
+C: "我打得拉";
 
 know{
 	D->(A or B);
@@ -20,10 +20,10 @@ know{
 
 //-----example 1 in English--------
 
-propo D = 'play the game';
-propo A = 'be skilled';
-propo B = 'play well';
-propo C = 'play poorly';
+D: "play the game";
+A: "be skilled";
+B: "play well";
+C: "play poorly";
 
 know{
 	D->(A or B);
@@ -40,10 +40,10 @@ know{
 
 //-----example 2 in Chinese--------
 
-propo A = 'A去';
-propo B = 'B去';
-propo C = 'C去';
-propo D = 'D去';
+A: "A去";
+B: "B去";
+C: "C去";
+D: "D去";
 
 know(A -> not(C == D));
 know(not(B and C));
@@ -59,10 +59,10 @@ infer(A,B,C,D) tnum 2;
 
 //-----example 2 in English--------
 
-propo A = 'A go';
-propo B = 'B go';
-propo C = 'C go';
-propo D = 'D go';
+A: "A go";
+B: "B go";
+C: "C go";
+D: "D go";
 
 know(A -> not(C == D));
 know(not(B and C));
@@ -78,10 +78,10 @@ infer(A,B,C,D) tnum 2;
 
 //-----example 3 in Chinese--------
 
-propo A = 'A去';
-propo B = 'B去';
-propo C = 'C去';
-propo D = 'D去';
+A: "A去";
+B: "B去";
+C: "C去";
+D: "D去";
 
 know{
 	A -> not(C == D);
@@ -99,10 +99,10 @@ infer(A,B,C,D) tnum 2;
 
 //-----example 3 in English--------
 
-propo A = 'A go';
-propo B = 'B go';
-propo C = 'C go';
-propo D = 'D go';
+A: "A go";
+B: "B go";
+C: "C go";
+D: "D go";
 
 know{
 	A -> not(C == D);
@@ -120,10 +120,10 @@ infer(A,B,C,D) tnum 2;
 
 //-----example 4 in Chinese--------
 
-propo P = '我去吃饭';
-propo Q = '我去二楼';
-propo R = '我去三楼';
-propo S = '我上楼梯';
+P: "我去吃饭";
+Q: "我去二楼";
+R: "我去三楼";
+S: "我上楼梯";
 
 know(P -> (Q or R));
 know(Q -> S);
@@ -138,10 +138,10 @@ know(P);
 
 //-----example 4 in English--------
 
-propo P = 'go to canteen';
-propo Q = 'go to the second floor';
-propo R = 'go to the third floor';
-propo S = 'go up the stairs';
+P: "go to canteen";
+Q: "go to the second floor";
+R: "go to the third floor";
+S: "go up the stairs";
 
 know(P -> (Q or R));
 know(Q -> S);
@@ -211,11 +211,6 @@ know (not [eat]([monkey], [banana]));
 
 //-----example 6 in Chinese--------
 
-propo A;
-propo B;
-propo C;
-propo D;
-
 obj [A];
 obj [B];
 obj [C];
@@ -223,12 +218,10 @@ obj [D];
 
 predi [去];
 
-know{
-	A == [去]([A]);
-	B == [去]([B]);
-	C == [去]([C]);
-	D == [去]([D]);
-}
+A: [去]([A]);
+B: [去]([B]);
+C: [去]([C]);
+D: [去]([D]);
 
 know(A -> not(C == D));
 know(not(B and C));
@@ -244,11 +237,6 @@ infer(A,B,C,D) tnum 2;
 
 //-----example 6 in English--------
 
-propo A;
-propo B;
-propo C;
-propo D;
-
 obj [A];
 obj [B];
 obj [C];
@@ -256,12 +244,10 @@ obj [D];
 
 predi [go];
 
-know{
-	A == [go]([A]);
-	B == [go]([B]);
-	C == [go]([C]);
-	D == [go]([D]);
-}
+A: [go]([A]);
+B: [go]([B]);
+C: [go]([C]);
+D: [go]([D]);
 
 know(A -> not(C == D));
 know(not(B and C));
@@ -337,7 +323,7 @@ obj [soil];
 //-----example 9 in Chinese--------
 
 predi [吃];
-propo P name '不吃';
+P: "不吃";
 obj [苹果];
 
 know([吃]([苹果]) or P);
@@ -349,7 +335,7 @@ know(not P);
 //-----example 9 in English--------
 
 predi [eat];
-propo P name 'do not eat';
+P: "do not eat";
 obj [apple];
 
 know([eat]([apple]) or P);
@@ -360,9 +346,7 @@ know(not P);
 
 //-----example 10 in Chinese--------
 
-obj [鹰];
-obj [企鹅];
-dom [鸟类];
+dom [鸟类] {[鹰], [企鹅]};
 
 know([鹰] into [鸟类]);
 know([企鹅] into [鸟类]);
@@ -382,9 +366,7 @@ know{
 
 //-----example 10 in English--------
 
-obj [eagle];
-obj [penguin];
-dom [bird];
+dom [bird] {[eagle], [penguin]};
 
 know([eagle] into [bird]);
 know([penguin] into [bird]);
@@ -537,7 +519,7 @@ obj [soil];
 
 //-----example 13 in Chinese--------
 
-predi [能吃];
+predi [能吃]; 
 
 dom [东西];
 obj [米饭];
@@ -557,3 +539,52 @@ obj [土];
 >>[能吃]([米饭]);
 >>[能吃]([铁]);
 >>[能吃]([土]);
+
+
+//-----example 13 in English--------
+
+predi [can eat];
+
+dom [elements];
+obj [rice];
+obj [iron];
+obj [soil];
+
+>>know{
+	[rice] into [elements];
+	[iron] into [elements];
+	[soil] into [elements];
+
+	onlyone [i] into [elements] [can eat]([i]);
+
+	[can eat]([rice]);
+}
+
+>>[can eat]([rice]);
+>>[can eat]([iron]);
+>>[can eat]([soil]);
+
+
+//-----example 14 in Chinese--------
+
+dom [动物] {[狗]};
+dom [食物] {[苹果]};
+
+predi [吃] tnum 2;
+
+know ([吃]([动物], [苹果]));
+
+>>[吃]([狗], [苹果]);
+>>[吃]([狗], [食物]);
+
+//-----example 14 in English--------
+
+dom [animal] {[dog]};
+dom [food] {[apple]};
+
+predi [eat] tnum 2;
+
+know ([eat]([animal], [apple]));
+
+>>[eat]([dog], [apple]);
+>>[eat]([dog], [food]);
